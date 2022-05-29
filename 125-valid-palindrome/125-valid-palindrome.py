@@ -1,27 +1,16 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        p1, p2 = 0, len(s)-1
-        isPalin = True
-        while p1 < p2:
-            if not s[p1].isalnum() and not s[p2].isalnum():
-                p1 += 1
-                p2 -= 1
+        new_s  = ''
+        for i, char in enumerate(s):
+            char = char.lower() 
+            if (char >= 'a' and char <= 'z') or (char >= '0' and char <= '9'):
+                new_s += char
+            else:
                 continue
-
-            if not s[p1].isalnum():
-                p1 += 1
-                continue
-            if not s[p2].isalnum():
-                p2 -= 1
-                continue
-            
-            if s[p1].lower() != s[p2].lower():
-                # print(p1, p2)
-                isPalin = False
-                break
-            p1 += 1
-            p2 -= 1
+        new_len = len(new_s)
+        k = new_len // 2
+        for i in range(0, k):
+            if new_s[i] != new_s[new_len - i - 1]:
+                return False
+        return True
         
-        return isPalin
-                
-            
