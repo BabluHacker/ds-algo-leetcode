@@ -23,18 +23,18 @@ class Solution:
             mp[i] = 1 + mp.get(i, 0)
         
         # create the bucket
-        bucket = [set() for _ in range(n+1)]
+        bucket = [[] for _ in range(n+1)]
         for value in mp.keys():
-            bucket[mp[value]].add(value)
-        print(bucket)
+            bucket[mp[value]].append(value)
+        # print(bucket)
         
         # iterate reversely to get top k 
         result = []
         for elements in reversed(bucket):
             if elements:
-                l = list(elements)
-                result.extend(l)
-                k -= len(l)
+                
+                result.extend(elements)
+                k -= len(elements)
             if k <= 0:
                 break
                 
