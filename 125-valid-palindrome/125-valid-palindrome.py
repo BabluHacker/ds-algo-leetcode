@@ -3,10 +3,10 @@ class Solution:
         p1, p2 = 0, len(s)-1
         isPalin = True
         while p1 < p2:
-            if not s[p1].isalnum():
+            if not self.isAlphaNumeric(s[p1]):
                 p1 += 1
                 continue
-            if not s[p2].isalnum():
+            if not self.isAlphaNumeric(s[p2]):
                 p2 -= 1
                 continue
             
@@ -18,5 +18,8 @@ class Solution:
             p2 -= 1
         
         return isPalin
-                
+    def isAlphaNumeric(self, char):
+        if (char >= 'a' and char <= 'z') or (char >= '0' and char <= '9') or (char >= 'A' and char <= 'Z'):
+            return True
+        return False
             
