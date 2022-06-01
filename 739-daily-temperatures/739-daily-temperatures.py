@@ -6,12 +6,12 @@ class Solution:
         for i in range(len(temperatures)):
             # look for the temp in stack < temp[i]
             while stack:
-                top = stack[0]
+                top = stack[-1]
                 if top[0] < temperatures[i]:
                     ans[top[1]] = i - top[1]
-                    stack.pop(0)
+                    stack.pop()
                     
                 else:
                     break
-            stack.insert(0, (temperatures[i], i))
+            stack.append((temperatures[i], i))
         return ans
