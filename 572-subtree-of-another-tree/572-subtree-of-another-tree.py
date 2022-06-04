@@ -11,8 +11,9 @@ class Solution:
         
         while queue:
             r = queue.pop()
-            if self.checkIsSame(r, subRoot):
-                return True
+            if r.val == subRoot.val:
+                if self.checkIsSame(r, subRoot):
+                    return True
             if r.left: 
                 queue.append(r.left)
             if r.right: 
