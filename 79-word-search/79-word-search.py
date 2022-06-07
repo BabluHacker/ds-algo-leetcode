@@ -46,8 +46,7 @@ class Solution:
             for c in range(COL):
                 dfs(r, c, "", root)
                 if len(res) > 0:
-                    break
-        if len(res) > 0: return True
+                    return True
         return False
             
             
