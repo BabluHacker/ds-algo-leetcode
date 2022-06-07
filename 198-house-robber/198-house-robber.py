@@ -6,7 +6,7 @@ class Solution:
         
         def getAmount(i):
             if i not in rob:
-                rob[i] = max(nums[i]+getAmount(i+2), getAmount(i+1))
+                rob[i] = max(getAmount(i+1), nums[i]+getAmount(i+2))
             return rob[i]
         
         return getAmount(0)
