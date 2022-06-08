@@ -6,7 +6,7 @@ class Solution:
             
             if n not in dp:
                 min_coin = sys.maxsize 
-                for i in range(len(coins)):
+                for i in range(len(coins)-1, -1, -1):
                     if n-coins[i] >= 0:
                         min_coin = min(min_coin, 1+dfs(n-coins[i]))
                 dp[n] = min_coin
