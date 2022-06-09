@@ -13,16 +13,14 @@ class Solution:
             if len(root.children) == 0:
                 return 1
             nonlocal diameter
-            all_levels = []
-            # print(root.val)
+            max_first, max_sec = 0, 0 
             for child in root.children:
-                l = get_level(child)
-                all_levels.append(l)
-            # print(all_levels)
-            max_first = max(all_levels)
-            del all_levels[all_levels.index(max_first)]
-            if len(all_levels)>0: max_sec = max(all_levels)
-            else: max_sec = 0
+                parent_h = get_level(child)
+                if parent_h > max_first:
+                    max_first, max_sec = parent_h, max_first
+                elif parent_h > max_sec:
+                    max_sec = parent_h
+            
             diameter = max(diameter, max_first + max_sec)
             
             return max_first + 1
