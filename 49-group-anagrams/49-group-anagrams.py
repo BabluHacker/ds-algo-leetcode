@@ -7,7 +7,7 @@ class Solution:
         for s in strs:
             sorted_strs.append(''.join(sorted(s)))
         
-        # print(sorted_strs)
+        print(sorted_strs)
         
         mp = {} # store the original values of anagram
         
