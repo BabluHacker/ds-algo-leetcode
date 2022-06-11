@@ -10,15 +10,18 @@ class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         
         def find_level(root, level):
-            if not root: return level
+            if not root: return level, True
             
-            left = find_level(root.left, level+1)
-            right = find_level(root.right, level+1)
+            left, ans1 = find_level(root.left, level+1)
+            right, ans2 = find_level(root.right, level+1)
             
+            ans = True
             if abs(left - right) > 1:
-                self.ans = False
-            
-            return max(left, right)
-    
-        find_level(root,0)
-        return self.ans
+                ans = False
+            if ans1 and ans2:
+                return max(left, right), ans
+            else:
+                return max(left, right), False
+
+        h, ans = find_level(root,0)
+        return ans 
