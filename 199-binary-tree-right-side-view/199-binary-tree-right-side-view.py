@@ -9,6 +9,7 @@ class Solution:
         self.res = []
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         # level order traverse and put the last node of every level 
+        # SAME APPROACH, WE CAN PRINT LEFT NODES BY ONLY TAKING TMP[0] IN RES
         if not root : return []
         queue = [root]
         res = []
