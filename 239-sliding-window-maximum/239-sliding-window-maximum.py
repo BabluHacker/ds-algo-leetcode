@@ -1,11 +1,14 @@
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         # monotonically decreasing queue
-        q = collections.deque()
+        n = len(nums)
+        if n * k == 0: return []
+        if k == 1: return nums
         
+        q = collections.deque()
         l = r = 0
         res = []
-        while r<len(nums):
+        while r<n:
             
             # from the right pop which values are less than nums[r] bcz it has to be decreasing
             while q and nums[q[-1]] < nums[r]:
