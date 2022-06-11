@@ -1,9 +1,6 @@
 class Solution:
     def minSwaps(self, data: List[int]) -> int:
-        window = 0
-        for i in data:
-            if i == 1:
-                window += 1
+        window = sum(data)
         
         one = 0
         l, r = 0, 0 
