@@ -35,9 +35,8 @@ class Solution:
         # visit captured cells
         for r in range(1, ROW-1):
             for c in range(1, COL-1):
-                if (r,c) not in visit and board[r][c] == "O":
-                    # dfs(r,c, True)
-                    board[r][c] = "X"
+                if (r,c) not in visit:
+                    dfs(r,c, True)
         
                     
         
