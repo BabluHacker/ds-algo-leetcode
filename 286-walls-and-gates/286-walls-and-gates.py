@@ -1,27 +1,26 @@
 class Solution:
     def wallsAndGates(self, rooms: List[List[int]]) -> None:
-        INF = 2147483647
+        """
+        Do not return anything, modify rooms in-place instead.
+        """
         
-        fx = [0, 0, 1, -1]
-        fy = [1, -1, 0, 0]
-        m = len(rooms)
-        n = len(rooms[0])
+        ROW, COL = len(rooms), len(rooms[0])
+        GATE = 0
+        EMPTY = 2147483647
+        q = []
+        for r in range(ROW):
+            for c in range(COL):
+                if rooms[r][c] == GATE:
+                    q.append((r,c))
         
-        q = list()
-        
-        for i in range(m):
-            for j in range(n):
-                if rooms[i][j] == 0:
-                    q.append((i,j))
-        
+        dx = [0,0,1,-1]
+        dy = [1,-1,0,0]
         while q:
-            ux, uy = q.pop(0)
-            
-            for k in range(4):
-                vx = ux + fx[k]
-                vy = uy + fy[k]
-                
-                if 0 <= vx < m and 0 <= vy < n and rooms[vx][vy] == INF:
-                    rooms[vx][vy] = rooms[ux][uy] + 1
-                    q.append((vx, vy))
+            r, c = q.pop(0)
+            for i in range(4):
+                nr, nc = r+dx[i], c+dy[i]
+                if 0<=nr<ROW and 0<=nc<COL and rooms[nr][nc] == EMPTY:
+                    rooms[nr][nc] = 1 + rooms[r][c]
+                    q.append((nr, nc))
+        
         
