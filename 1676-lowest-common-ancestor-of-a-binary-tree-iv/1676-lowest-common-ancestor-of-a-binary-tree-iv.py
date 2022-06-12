@@ -11,7 +11,7 @@ class Solution:
         self.found = False
     def lowestCommonAncestor(self, root: 'TreeNode', nodes: 'List[TreeNode]') -> 'TreeNode':
         
-        
+        if len(nodes) == 1: return nodes[0]
         def find(root):
             if not root:
                 return []
