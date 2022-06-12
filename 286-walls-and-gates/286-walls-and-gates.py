@@ -19,10 +19,8 @@ class Solution:
             r, c = q.pop(0)
             for i in range(4):
                 nr, nc = r+dx[i], c+dy[i]
-                if nr < 0 or nc < 0 or nr >= ROW or nc >= COL or rooms[nr][nc] <= 0:
-                    continue
-                elif rooms[nr][nc] == EMPTY:
+                if 0<=nr<ROW and 0<=nc<COL and rooms[nr][nc] == EMPTY:
                     rooms[nr][nc] = 1 + rooms[r][c]
-                    q.append((nr,nc))
+                    q.append((nr, nc))
         
         
