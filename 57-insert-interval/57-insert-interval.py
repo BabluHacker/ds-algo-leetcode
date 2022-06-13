@@ -1,8 +1,8 @@
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         res = []
-        
-        for i in range(len(intervals)):
+        n = len(intervals)
+        for i in range(n):
             # newInterval is not overlapping to current and happening before
             if newInterval[1] < intervals[i][0]:
                 res.append(newInterval)
