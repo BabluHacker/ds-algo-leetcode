@@ -1,22 +1,20 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-        intervals = sorted(intervals, key=lambda k:k[0])
-        rooms = 0
-        print(intervals)
-        
+        intervals.sort()
         processing_endtime = []
-        for timing in intervals:
-            assigned = False
-            for endtime in processing_endtime:
-                if endtime <= timing[0] : # new meeting start time is later than a                                               #ended meeting. so just pop out that                                                #meeting and assign to this meeting
-                    assigned= True
-                    processing_endtime.remove(endtime)
-                    processing_endtime.append(timing[1])
+        rooms = 0
+        for start, end in intervals:
+            replaced = False
+            for p_end in processing_endtime:
+                if p_end <= start: # replace the room
+                    processing_endtime.remove(p_end)
+                    processing_endtime.append(end)
+                    replaced = True
                     break
-            
-            if not assigned:
+                    
+            if not replaced: # new room allocated
                 rooms += 1
-                processing_endtime.append(timing[1])
-        return rooms
+                processing_endtime.append(end)
             
-                
+        return rooms
+        
