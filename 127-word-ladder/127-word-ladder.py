@@ -7,47 +7,39 @@ class Solution:
         if endWord not in wordList:
             return 0
         
-        if beginWord not in wordList:
-            wordList.append(beginWord)
-        self.construct_graph(wordList)
+        wordList.append(beginWord)
+        self.construct(wordList)
         
-        queue = [beginWord]
-        visited = set([beginWord])
+        # print(self.g)
         
+        q = [beginWord]
+        visit = set([beginWord])
         dist = {}
         dist[beginWord] = 0
         
-        while queue:
+        
+        while q:
+            w = q.pop(0)
+            l = len(w)
             
-            node = queue.pop(0)
+            if w == endWord:
+                return dist[w]+1
             
-            if node == endWord:
-                return dist[node]+1
-                   
-            print(node, end=" ")
-            for i in range(len(node)):
-                pattern = node[:i]+"*"+node[i+1:]
-                for w in self.g[pattern]:
-                    if w not in visited:
-                        queue.append(w)
-                        visited.add(w)
-                        dist[w] = 1 + dist[node]
-
+            for i in range(l):
+                pattern = w[:i]+'*'+w[i+1:]
+                for child in self.g[pattern]:
+                    if child not in visit:
+                        q.append(child)
+                        visit.add(child)
+                        dist[child] = 1 + dist[w]
+                        
         return 0
-    
-    
-    def construct_graph(self, words):
+        
+    def construct(self, words):
         for word in words:
-            for j in range(len(word)):
-                pattern = word[:j]+"*"+word[j+1:]
+            for i in range(len(word)):
+                pattern = word[:i]+'*'+word[i+1:]
                 self.g[pattern].append(word)
-        print(self.g)
-            
-    
-    def find_diff(self, start, end):
-        c = 0
-        for i in range(len(start)):
-            if start[i] != end[i]:
-                c += 1
-        return c
+        
+        
         
