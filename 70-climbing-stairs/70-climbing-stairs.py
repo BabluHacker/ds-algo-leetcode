@@ -1,14 +1,17 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
         dp = {}
-        def countWays(n):
-            if n == 0: return 1
-            if n < 0: return 0
-            if n-2 not in dp:
-                dp[n-2] = countWays(n-2)
-            if n-1 not in dp:
-                dp[n-1] = countWays(n-1)
-            
-            return dp[n-1] + dp[n-2]
-        return countWays(n)
+        dp[1] = 1
+        dp[2] = 2
+        dp[0] = 0
         
+        def find_ways(n):
+            if n in dp:
+                return dp[n]
+            
+            dp[n] = find_ways(n-1) + find_ways(n-2)
+            
+            return dp[n]
+        return find_ways(n)
+            
+             
