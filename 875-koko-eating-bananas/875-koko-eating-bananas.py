@@ -17,3 +17,5 @@ class Solution:
         for c in piles:
             hour += math.ceil(c/k)
         return hour
+    
+    
