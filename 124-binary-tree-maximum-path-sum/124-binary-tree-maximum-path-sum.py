@@ -22,5 +22,5 @@ class Solution:
         curr_max = left_max + root.val + right_max
         self.ans = max(self.ans, curr_max)
         
-        return max(left_max+root.val, right_max+root.val, 0 )
+        return max(left_max+root.val, right_max+root.val, 0)
             
