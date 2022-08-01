@@ -2,25 +2,21 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         if len(strs) <= 1:
             return [strs]
-        result = []
+        # sort strs
         sorted_strs = []
-        for s in strs:
-            sorted_strs.append(''.join(sorted(s)))
+        for i in range(len(strs)):
+            sorted_strs.append(''.join(sorted(strs[i])))
         
-        print(sorted_strs)
+        mp = {}
         
-        mp = {} # store the original values of anagram
-        
-        for i in range(len(sorted_strs)):
+        for i in range(len(strs)):
             if sorted_strs[i] in mp:
                 mp[sorted_strs[i]].append(strs[i])
             else:
                 mp[sorted_strs[i]] = [strs[i]]
-        # print(mp)
         
-        for i in mp.keys():
-            result.append(mp[i])
+        result = []
+        for key, value in mp.items():
+            result.append(value)
+        
         return result
-            
-            
-        
