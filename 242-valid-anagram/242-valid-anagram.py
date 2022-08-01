@@ -3,24 +3,16 @@ class Solution:
         if len(s) != len(t): return False
         
         mp = {}
-        # calculating the char counts
-        for ch in s:
-            if ch in mp:
-                mp[ch] += 1
-            else:
-                mp[ch] = 1
-                
-        for ch in t:
-            if ch not in mp:
-                return False # if not in mp then not a anagram
-            else:
-                mp[ch] -= 1
-                if mp[ch] < 0: return False # if any char is extra here then False
         
-        # check the mp if any char count is != 0
-        for i in mp.keys():
-            if mp[i] != 0:
+        for i in range(len(s)):
+            mp[s[i]] = 1 + mp.get(s[i], 0)
+        
+        for i in range(len(t)):
+            mp[t[i]] = mp.get(t[i], 0) - 1
+            if mp[t[i]] < 0:
+                return False
+        
+        for key, value in mp.items():
+            if value != 0:
                 return False
         return True
-                
-        
